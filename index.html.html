@@ -1,0 +1,1166 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <title>澎湖三日遊 旅遊手冊</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;600;700;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" />
+  <style>
+    :root {
+      --ocean: #006BA6;
+      --sky: #0099CC;
+      --wave: #00BCD4;
+      --sand: #F5E6C8;
+      --coral: #FF6B6B;
+      --gold: #FFB300;
+      --green: #4CAF50;
+      --white: #FFFFFF;
+      --text-dark: #1A2B3C;
+      --text-mid: #3A5068;
+      --text-light: #6B8A9E;
+      --bg-light: #F0F8FF;
+      --bg-card: #FFFFFF;
+      --shadow: 0 4px 20px rgba(0,107,166,0.12);
+      --shadow-lg: 0 8px 32px rgba(0,107,166,0.18);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Noto Sans TC', sans-serif;
+      background: var(--bg-light);
+      color: var(--text-dark);
+      max-width: 480px;
+      margin: 0 auto;
+      overflow-x: hidden;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      background: linear-gradient(160deg, #004E7C 0%, #006BA6 40%, #00BCD4 100%);
+      padding: 60px 24px 80px;
+      text-align: center;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Ccircle cx='300' cy='80' r='160' fill='rgba(255,255,255,0.04)'/%3E%3Ccircle cx='60' cy='320' r='120' fill='rgba(255,255,255,0.05)'/%3E%3C/svg%3E") center/cover;
+    }
+    .hero-wave {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 56px;
+      background: var(--bg-light);
+      clip-path: ellipse(55% 100% at 50% 100%);
+    }
+    .hero-badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.18);
+      border: 1px solid rgba(255,255,255,0.35);
+      color: #fff;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      padding: 5px 14px;
+      border-radius: 20px;
+      margin-bottom: 16px;
+      backdrop-filter: blur(4px);
+    }
+    .hero-title {
+      font-size: 36px;
+      font-weight: 900;
+      color: #fff;
+      line-height: 1.15;
+      text-shadow: 0 2px 12px rgba(0,0,0,0.2);
+      margin-bottom: 8px;
+    }
+    .hero-subtitle {
+      font-size: 15px;
+      color: rgba(255,255,255,0.82);
+      font-weight: 400;
+      margin-bottom: 28px;
+    }
+    .hero-chips {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .hero-chip {
+      background: rgba(255,255,255,0.18);
+      border: 1px solid rgba(255,255,255,0.3);
+      color: #fff;
+      font-size: 12px;
+      font-weight: 500;
+      padding: 5px 12px;
+      border-radius: 16px;
+      backdrop-filter: blur(4px);
+    }
+    .hero-chip i { margin-right: 5px; font-size: 11px; }
+
+    /* ── SECTION ── */
+    .section { padding: 20px 16px; }
+    .section-title {
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--ocean);
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .section-title i {
+      width: 34px; height: 34px;
+      background: linear-gradient(135deg, var(--ocean), var(--wave));
+      color: #fff;
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 15px;
+      flex-shrink: 0;
+    }
+
+    /* ── LEADER CARD ── */
+    .leader-card {
+      background: linear-gradient(135deg, var(--ocean) 0%, #0099CC 100%);
+      border-radius: 18px;
+      padding: 20px;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      box-shadow: var(--shadow-lg);
+    }
+    .leader-avatar {
+      width: 60px; height: 60px;
+      background: rgba(255,255,255,0.2);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 28px;
+      flex-shrink: 0;
+      border: 2px solid rgba(255,255,255,0.4);
+    }
+    .leader-info { flex: 1; }
+    .leader-role {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      opacity: 0.8;
+      margin-bottom: 2px;
+    }
+    .leader-name {
+      font-size: 22px;
+      font-weight: 800;
+      margin-bottom: 6px;
+    }
+    .leader-phone {
+      display: flex; align-items: center; gap: 6px;
+      font-size: 14px; opacity: 0.9;
+    }
+    .call-btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(255,255,255,0.22);
+      border: 1px solid rgba(255,255,255,0.4);
+      color: #fff;
+      padding: 8px 16px;
+      border-radius: 24px;
+      font-size: 13px;
+      font-weight: 600;
+      text-decoration: none;
+      margin-top: 8px;
+      transition: background 0.2s;
+    }
+    .call-btn:active { background: rgba(255,255,255,0.35); }
+
+    /* ── INFO GRID ── */
+    .info-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+    .info-card {
+      background: var(--bg-card);
+      border-radius: 14px;
+      padding: 14px;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(0,107,166,0.08);
+    }
+    .info-card .ic-icon {
+      font-size: 22px;
+      margin-bottom: 6px;
+    }
+    .info-card .ic-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      color: var(--text-light);
+      margin-bottom: 3px;
+      text-transform: uppercase;
+    }
+    .info-card .ic-value {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-dark);
+      line-height: 1.4;
+    }
+    .info-card.full { grid-column: 1 / -1; }
+
+    /* ── SHIP CARD ── */
+    .ship-card {
+      background: var(--bg-card);
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      margin-bottom: 10px;
+      border: 1px solid rgba(0,107,166,0.08);
+    }
+    .ship-header {
+      background: linear-gradient(90deg, var(--ocean), var(--wave));
+      color: #fff;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 700;
+      font-size: 14px;
+    }
+    .ship-header .tag {
+      background: rgba(255,255,255,0.22);
+      font-size: 11px;
+      padding: 2px 8px;
+      border-radius: 10px;
+      margin-left: auto;
+    }
+    .ship-body { padding: 16px; }
+    .ship-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 0;
+      border-bottom: 1px dashed rgba(0,107,166,0.12);
+    }
+    .ship-row:last-child { border-bottom: none; }
+    .ship-row .sr-label {
+      font-size: 12px;
+      color: var(--text-light);
+      font-weight: 500;
+      display: flex; align-items: center; gap: 5px;
+    }
+    .ship-row .sr-value {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-dark);
+    }
+    .ship-row .sr-value.highlight {
+      color: var(--coral);
+      font-size: 16px;
+    }
+
+    /* ── TABS (Day selector) ── */
+    .tabs {
+      display: flex;
+      background: var(--bg-card);
+      border-radius: 14px;
+      padding: 5px;
+      gap: 4px;
+      box-shadow: var(--shadow);
+      margin-bottom: 14px;
+    }
+    .tab-btn {
+      flex: 1;
+      padding: 10px 4px;
+      border: none;
+      background: transparent;
+      border-radius: 10px;
+      font-family: 'Noto Sans TC', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-light);
+      cursor: pointer;
+      transition: all 0.25s;
+      line-height: 1.4;
+    }
+    .tab-btn.active {
+      background: linear-gradient(135deg, var(--ocean), var(--wave));
+      color: #fff;
+      box-shadow: 0 3px 10px rgba(0,107,166,0.3);
+    }
+
+    /* ── DAY CONTENT ── */
+    .day-panel { display: none; }
+    .day-panel.active { display: block; }
+
+    .day-banner {
+      background: linear-gradient(135deg, var(--ocean), var(--wave));
+      border-radius: 18px;
+      padding: 18px 20px;
+      color: #fff;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      box-shadow: var(--shadow-lg);
+    }
+    .day-num {
+      font-size: 44px;
+      font-weight: 900;
+      opacity: 0.3;
+      line-height: 1;
+    }
+    .day-banner-info { flex: 1; }
+    .day-banner-date {
+      font-size: 11px;
+      font-weight: 600;
+      opacity: 0.8;
+      letter-spacing: 1px;
+    }
+    .day-banner-title {
+      font-size: 17px;
+      font-weight: 800;
+      margin: 3px 0;
+    }
+    .day-meal-chips {
+      display: flex; gap: 5px; flex-wrap: wrap;
+      margin-top: 6px;
+    }
+    .meal-chip {
+      background: rgba(255,255,255,0.2);
+      font-size: 10px;
+      font-weight: 600;
+      padding: 3px 8px;
+      border-radius: 10px;
+    }
+    .meal-chip.na { opacity: 0.5; text-decoration: line-through; }
+
+    /* ── SPOTS ── */
+    .spot-list { display: flex; flex-direction: column; gap: 10px; }
+    .spot-item {
+      background: var(--bg-card);
+      border-radius: 16px;
+      padding: 14px 16px;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(0,107,166,0.07);
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+    .spot-icon {
+      width: 40px; height: 40px;
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+    .spot-icon.nature { background: #E8F5E9; }
+    .spot-icon.culture { background: #FFF3E0; }
+    .spot-icon.food { background: #FCE4EC; }
+    .spot-icon.shopping { background: #E3F2FD; }
+    .spot-icon.event { background: #F3E5F5; }
+    .spot-icon.scenic { background: #E0F7FA; }
+
+    .spot-content { flex: 1; }
+    .spot-name {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 4px;
+    }
+    .spot-desc {
+      font-size: 12px;
+      color: var(--text-mid);
+      line-height: 1.6;
+    }
+    .spot-tag {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 8px;
+      margin-top: 5px;
+    }
+    .spot-tag.tip { background: #FFF8E1; color: #F57F17; }
+    .spot-tag.must { background: #FCE4EC; color: #C62828; }
+    .spot-tag.free { background: #E8F5E9; color: #2E7D32; }
+
+    /* ── HOTEL CARD ── */
+    .hotel-card {
+      background: var(--bg-card);
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(0,107,166,0.08);
+    }
+    .hotel-header {
+      background: linear-gradient(90deg, #FF6B6B, #FF8E53);
+      color: #fff;
+      padding: 14px 16px;
+      font-weight: 800;
+      font-size: 15px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .hotel-body { padding: 16px; }
+    .hotel-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 0;
+      border-bottom: 1px dashed rgba(0,0,0,0.07);
+      font-size: 13px;
+    }
+    .hotel-row:last-child { border-bottom: none; }
+    .hotel-row .hl { color: var(--text-light); font-weight: 500; }
+    .hotel-row .hv { color: var(--text-dark); font-weight: 700; }
+
+    /* ── PRICE TABLE ── */
+    .price-table {
+      background: var(--bg-card);
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+    .price-table table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .price-table th {
+      background: linear-gradient(135deg, var(--ocean), var(--wave));
+      color: #fff;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 10px 8px;
+      text-align: center;
+    }
+    .price-table td {
+      font-size: 12px;
+      color: var(--text-dark);
+      padding: 10px 8px;
+      text-align: center;
+      border-bottom: 1px solid rgba(0,107,166,0.07);
+    }
+    .price-table tr:last-child td { border-bottom: none; }
+    .price-table tr:nth-child(even) td { background: var(--bg-light); }
+    .price-table .highlight-cell {
+      color: var(--coral);
+      font-weight: 800;
+    }
+
+    /* ── INCLUDES ── */
+    .includes-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+    .include-item {
+      background: var(--bg-card);
+      border-radius: 12px;
+      padding: 12px;
+      box-shadow: var(--shadow);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text-mid);
+      border: 1px solid rgba(0,107,166,0.07);
+    }
+    .include-item i {
+      width: 28px; height: 28px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, var(--ocean), var(--wave));
+      color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 12px;
+      flex-shrink: 0;
+    }
+
+    /* ── NOTES ── */
+    .note-card {
+      background: var(--bg-card);
+      border-radius: 16px;
+      padding: 16px;
+      box-shadow: var(--shadow);
+      margin-bottom: 10px;
+      border-left: 4px solid var(--gold);
+    }
+    .note-title {
+      font-size: 13px;
+      font-weight: 800;
+      color: var(--text-dark);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .note-title i { color: var(--gold); }
+    .note-list { padding-left: 0; list-style: none; }
+    .note-list li {
+      font-size: 12px;
+      color: var(--text-mid);
+      line-height: 1.7;
+      padding-left: 16px;
+      position: relative;
+    }
+    .note-list li::before {
+      content: '•';
+      position: absolute;
+      left: 4px;
+      color: var(--wave);
+      font-size: 14px;
+    }
+
+    /* ── FOOTER ── */
+    .footer {
+      background: linear-gradient(135deg, #004E7C, var(--ocean));
+      color: rgba(255,255,255,0.7);
+      text-align: center;
+      padding: 28px 16px;
+      font-size: 12px;
+      margin-top: 10px;
+    }
+    .footer strong { color: #fff; display: block; font-size: 16px; margin-bottom: 4px; }
+
+    /* ── TIMELINE CONNECTOR ── */
+    .timeline-wrapper { position: relative; padding-left: 20px; }
+    .timeline-wrapper::before {
+      content: '';
+      position: absolute;
+      left: 6px; top: 20px; bottom: 20px;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--ocean), var(--wave));
+      border-radius: 2px;
+    }
+    .timeline-dot {
+      position: absolute;
+      left: -14px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 12px; height: 12px;
+      background: var(--ocean);
+      border: 2px solid #fff;
+      border-radius: 50%;
+      box-shadow: 0 0 0 2px var(--wave);
+    }
+
+    /* ── DIVIDER ── */
+    .divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(0,107,166,0.15), transparent);
+      margin: 6px 0 14px;
+    }
+
+    /* ── STICKY NAV ── */
+    .sticky-call {
+      position: fixed;
+      bottom: 20px;
+      right: 16px;
+      z-index: 999;
+    }
+    .sticky-call a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 52px; height: 52px;
+      background: linear-gradient(135deg, var(--green), #66BB6A);
+      border-radius: 50%;
+      color: #fff;
+      font-size: 22px;
+      box-shadow: 0 4px 16px rgba(76,175,80,0.4);
+      text-decoration: none;
+      transition: transform 0.2s;
+    }
+    .sticky-call a:active { transform: scale(0.92); }
+
+    /* scroll-top */
+    .scroll-top {
+      position: fixed;
+      bottom: 82px;
+      right: 16px;
+      z-index: 998;
+    }
+    .scroll-top button {
+      width: 40px; height: 40px;
+      background: var(--bg-card);
+      border: 2px solid var(--ocean);
+      border-radius: 50%;
+      color: var(--ocean);
+      font-size: 16px;
+      cursor: pointer;
+      box-shadow: var(--shadow);
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    /* Animate */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .fade-up { animation: fadeUp 0.5s ease both; }
+
+    /* responsive tweak */
+    @media (max-width: 360px) {
+      .hero-title { font-size: 30px; }
+      .day-num { font-size: 36px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── HERO ── -->
+<div class="hero">
+  <div class="hero-badge">🌊 2026 菊島之旅</div>
+  <h1 class="hero-title">澎湖三日遊<br>旅遊手冊</h1>
+  <p class="hero-subtitle">民國115年 5月1日－3日</p>
+  <div class="hero-chips">
+    <span class="hero-chip"><i class="fas fa-calendar-alt"></i>3天2夜</span>
+    <span class="hero-chip"><i class="fas fa-users"></i>84人</span>
+    <span class="hero-chip"><i class="fas fa-ship"></i>海上跳島</span>
+    <span class="hero-chip"><i class="fas fa-star"></i>雙心石滬</span>
+  </div>
+  <div class="hero-wave"></div>
+</div>
+
+<!-- ── LEADER ── -->
+<section class="section fade-up">
+  <div class="section-title">
+    <i class="fas fa-user-tie"></i>領隊資訊
+  </div>
+  <div class="leader-card">
+    <div class="leader-avatar">👩‍✈️</div>
+    <div class="leader-info">
+      <div class="leader-role">TOUR LEADER</div>
+      <div class="leader-name">楊琇如</div>
+      <div class="leader-phone"><i class="fas fa-phone"></i>0963-127-327</div>
+      <a class="call-btn" href="tel:0963127327"><i class="fas fa-phone-alt"></i>立即撥打</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── SHIP INFO ── -->
+<section class="section fade-up">
+  <div class="section-title">
+    <i class="fas fa-ship"></i>船班資訊
+  </div>
+
+  <!-- 去程 -->
+  <div class="ship-card">
+    <div class="ship-header">
+      <i class="fas fa-arrow-right"></i> 去程 布袋 → 馬公
+      <span class="tag">5/01 (五)</span>
+    </div>
+    <div class="ship-body">
+      <div class="ship-row">
+        <span class="sr-label"><i class="fas fa-ferry"></i>船名</span>
+        <span class="sr-value">凱旋 8 號</span>
+      </div>
+      <div class="ship-row">
+        <span class="sr-label"><i class="fas fa-clock"></i>出發時間</span>
+        <span class="sr-value highlight">07:30</span>
+      </div>
+      <div class="ship-row">
+        <span class="sr-label"><i class="fas fa-map-marker-alt"></i>出發港口</span>
+        <span class="sr-value">布袋港</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 回程 -->
+  <div class="ship-card">
+    <div class="ship-header" style="background: linear-gradient(90deg, #FF6B6B, #FF8E53);">
+      <i class="fas fa-arrow-left"></i> 回程 馬公 → 布袋
+      <span class="tag">5/03 (日)</span>
+    </div>
+    <div class="ship-body">
+      <div class="ship-row">
+        <span class="sr-label"><i class="fas fa-ferry"></i>船名</span>
+        <span class="sr-value">太吉 3 號</span>
+      </div>
+      <div class="ship-row">
+        <span class="sr-label"><i class="fas fa-clock"></i>出發時間</span>
+        <span class="sr-value highlight">13:00</span>
+      </div>
+      <div class="ship-row">
+        <span class="sr-label"><i class="fas fa-map-marker-alt"></i>出發港口</span>
+        <span class="sr-value">馬公港</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 重要提醒 -->
+  <div class="note-card" style="border-left-color: var(--coral);">
+    <div class="note-title"><i class="fas fa-exclamation-circle" style="color:var(--coral)"></i>搭船重要提醒</div>
+    <ul class="note-list">
+      <li>請務必攜帶身分證件，搭船需核對身分</li>
+      <li>建議提前 30 分鐘到港口集合</li>
+      <li>行程如因天候、海象不佳，船班時間可能異動</li>
+      <li>暈船者請提前服用暈船藥</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ── HOTEL ── -->
+<section class="section fade-up">
+  <div class="section-title">
+    <i class="fas fa-hotel"></i>住宿安排
+  </div>
+  <div class="hotel-card">
+    <div class="hotel-header">
+      <i class="fas fa-building"></i> 豐家飯店（或同等級）
+    </div>
+    <div class="hotel-body">
+      <div class="hotel-row">
+        <span class="hl">入住日期</span>
+        <span class="hv">5/01（五）</span>
+      </div>
+      <div class="hotel-row">
+        <span class="hl">退房日期</span>
+        <span class="hv">5/03（日）</span>
+      </div>
+      <div class="hotel-row">
+        <span class="hl">住宿晚數</span>
+        <span class="hv">連續 2 晚</span>
+      </div>
+      <div class="hotel-row">
+        <span class="hl">早餐服務</span>
+        <span class="hv">含早餐（第2、3天）</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── ITINERARY TABS ── -->
+<section class="section fade-up">
+  <div class="section-title">
+    <i class="fas fa-route"></i>每日行程
+  </div>
+
+  <div class="tabs">
+    <button class="tab-btn active" onclick="switchDay(1, this)">
+      Day 1<br>
+      <span style="font-size:10px;opacity:0.8">5/01 摩西分海</span>
+    </button>
+    <button class="tab-btn" onclick="switchDay(2, this)">
+      Day 2<br>
+      <span style="font-size:10px;opacity:0.8">5/02 南海跳島</span>
+    </button>
+    <button class="tab-btn" onclick="switchDay(3, this)">
+      Day 3<br>
+      <span style="font-size:10px;opacity:0.8">5/03 人文悠遊</span>
+    </button>
+  </div>
+
+  <!-- Day 1 -->
+  <div class="day-panel active" id="day1">
+    <div class="day-banner">
+      <div class="day-num">01</div>
+      <div class="day-banner-info">
+        <div class="day-banner-date">5月1日（星期五）</div>
+        <div class="day-banner-title">台版摩西分海 ＋ 隘門黃金沙灘</div>
+        <div class="day-meal-chips">
+          <span class="meal-chip na">🍳 早餐</span>
+          <span class="meal-chip">🍱 午餐</span>
+          <span class="meal-chip">🍽 晚餐</span>
+        </div>
+      </div>
+    </div>
+    <div class="spot-list">
+      <div class="spot-item">
+        <div class="spot-icon nature">🌊</div>
+        <div class="spot-content">
+          <div class="spot-name">北寮奎壁山</div>
+          <div class="spot-desc">台版摩西分海！退潮時海水分開，形成通往小島的礫石小徑，奇景令人嘆為觀止。</div>
+          <span class="spot-tag must">必去景點</span>
+          <span class="spot-tag tip">配合潮汐</span>
+        </div>
+      </div>
+      <div class="spot-item">
+        <div class="spot-icon nature">🏖️</div>
+        <div class="spot-content">
+          <div class="spot-name">隘門黃金沙灘</div>
+          <div class="spot-desc">細白沙灘如黃金，水清見底。可自費體驗香蕉船、甜甜圈、水上摩托車等水上活動。</div>
+          <span class="spot-tag free">自費水上活動</span>
+        </div>
+      </div>
+      <div class="spot-item">
+        <div class="spot-icon shopping">🛍️</div>
+        <div class="spot-content">
+          <div class="spot-name">馬公大街</div>
+          <div class="spot-desc">澎湖最熱鬧的購物區，各類伴手禮、小吃、特產應有盡有，自由採購澎湖美食好物。</div>
+          <span class="spot-tag tip">自由活動</span>
+        </div>
+      </div>
+      <div class="spot-item" style="background: linear-gradient(135deg, #FFF8E1, #FFF3CD); border-color: #FFB300;">
+        <div class="spot-icon event">🚌</div>
+        <div class="spot-content">
+          <div class="spot-name">集合 ✦ 出發時間</div>
+          <div class="spot-desc">07:00 員林集合搭車前往布袋港<br>07:30 凱旋8號出發 → 抵達馬公</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Day 2 -->
+  <div class="day-panel" id="day2">
+    <div class="day-banner" style="background: linear-gradient(135deg, #6B4226, #FF6B6B);">
+      <div class="day-num">02</div>
+      <div class="day-banner-info">
+        <div class="day-banner-date">5月2日（星期六）</div>
+        <div class="day-banner-title">瑰麗南海跳島一日遊</div>
+        <div class="day-meal-chips">
+          <span class="meal-chip">🍳 早餐</span>
+          <span class="meal-chip">🍱 午餐</span>
+          <span class="meal-chip">🍽 晚餐</span>
+        </div>
+      </div>
+    </div>
+    <div class="spot-list">
+      <div class="spot-item">
+        <div class="spot-icon must" style="background:#FCE4EC;">❤️</div>
+        <div class="spot-content">
+          <div class="spot-name">七美島</div>
+          <div class="spot-desc">
+            <strong>雙心石滬</strong>：世界唯一雙心形石滬，浪漫打卡聖地。<br>
+            七美人塚、望夫石、大獅潛龍、月世界地形。
+          </div>
+          <span class="spot-tag must">必拍景點</span>
+        </div>
+      </div>
+      <div class="spot-item">
+        <div class="spot-icon culture">🏘️</div>
+        <div class="spot-content">
+          <div class="spot-name">望安島</div>
+          <div class="spot-desc">
+            <strong>花宅古厝</strong>：保存完整的傳統閩南建築聚落。<br>
+            天台山眺望、綠蠵龜故鄉（保育區）。
+          </div>
+          <span class="spot-tag tip">世界遺產級古聚落</span>
+        </div>
+      </div>
+      <div class="spot-item">
+        <div class="spot-icon scenic" style="background:#E0F7FA;">⛵</div>
+        <div class="spot-content">
+          <div class="spot-name">桶盤嶼</div>
+          <div class="spot-desc">海上巡航欣賞壯觀玄武岩柱，如置身天然雕塑公園。</div>
+          <span class="spot-tag free">船上觀景</span>
+        </div>
+      </div>
+      <div class="spot-item">
+        <div class="spot-icon shopping">🛍️</div>
+        <div class="spot-content">
+          <div class="spot-name">Pier3 三號港昇恆昌</div>
+          <div class="spot-desc">澎湖規模最大免稅購物商場，菸酒、精品、伴手禮一次購足。</div>
+          <span class="spot-tag tip">免稅優惠</span>
+        </div>
+      </div>
+      <div class="spot-item">
+        <div class="spot-icon culture">🎵</div>
+        <div class="spot-content">
+          <div class="spot-name">篤行十村</div>
+          <div class="spot-desc">
+            <strong>潘安邦舊厝</strong>（外婆的澎湖灣）<br>
+            <strong>張雨生老家</strong>（我的未來不是夢）
+          </div>
+          <span class="spot-tag tip">台灣音樂人故居</span>
+        </div>
+      </div>
+      <div class="spot-item" style="background: linear-gradient(135deg, #F3E5F5, #EDE7F6); border-color: #9C27B0;">
+        <div class="spot-icon event" style="background:#E8EAF6;">🎆</div>
+        <div class="spot-content">
+          <div class="spot-name">觀音亭海上煙火</div>
+          <div class="spot-desc">澎湖國際海上煙火節，絢麗煙火在馬公港灣綻放，震撼無比！</div>
+          <span class="spot-tag must">年度盛事</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Day 3 -->
+  <div class="day-panel" id="day3">
+    <div class="day-banner" style="background: linear-gradient(135deg, #2E7D32, #4CAF50);">
+      <div class="day-num">03</div>
+      <div class="day-banner-info">
+        <div class="day-banner-date">5月3日（星期日）</div>
+        <div class="day-banner-title">菊島人文悠遊之旅</div>
+        <div class="day-meal-chips">
+          <span class="meal-chip">🍳 早餐</span>
+          <span class="meal-chip">🍱 午餐</span>
+          <span class="meal-chip">🍽 晚餐</span>
+        </div>
+      </div>
+    </div>
+    <div class="spot-list">
+      <div class="spot-item">
+        <div class="spot-icon scenic">🌉</div>
+        <div class="spot-content">
+          <div class="spot-name">澎湖跨海大橋</div>
+          <div class="spot-desc">全長 2.5 公里，橫跨白沙島與西嶼，是全台最長跨海大橋之一，視野遼闊壯觀。</div>
+          <span class="spot-tag must">地標景點</span>
+        </div>
+      </div>
+      <div class="spot-item">
+        <div class="spot-icon culture">🏠</div>
+        <div class="spot-content">
+          <div class="spot-name">二崁古厝</div>
+          <div class="spot-desc">全台第一個傳統聚落保護區，白牆珊瑚石砌建築，保存澎湖早期漁民生活樣貌。</div>
+          <span class="spot-tag tip">傳統聚落</span>
+        </div>
+      </div>
+      <div class="spot-item">
+        <div class="spot-icon nature">🌋</div>
+        <div class="spot-content">
+          <div class="spot-name">池西岩瀑 ＋ 小池角雙曲橋</div>
+          <div class="spot-desc">壯麗玄武岩壁宛如陸地上的瀑布，雙曲橋倒映水面如雙彩虹，景色絕美。</div>
+          <span class="spot-tag must">絕美秘境</span>
+        </div>
+      </div>
+      <div class="spot-item">
+        <div class="spot-icon nature">🌳</div>
+        <div class="spot-content">
+          <div class="spot-name">通樑古榕</div>
+          <div class="spot-desc">樹齡 300 年以上的古老榕樹，樹根佈滿廟宇牆壁，被稱為澎湖「神木」。</div>
+          <span class="spot-tag tip">300年古榕</span>
+        </div>
+      </div>
+      <div class="spot-item">
+        <div class="spot-icon food">🦑</div>
+        <div class="spot-content">
+          <div class="spot-name">赤崁漁產觀光商圈</div>
+          <div class="spot-desc">澎湖海產直售，魷魚絲、丁香魚、海鮮乾貨可試吃，是最佳澎湖伴手禮採購地點。</div>
+          <span class="spot-tag free">試吃採購</span>
+        </div>
+      </div>
+      <div class="spot-item">
+        <div class="spot-icon culture">⛩️</div>
+        <div class="spot-content">
+          <div class="spot-name">媽宮老街</div>
+          <div class="spot-desc">
+            <strong>天后宮</strong>：全台最古老的媽祖廟。<br>
+            <strong>中央老街</strong>：澎湖最具歷史的商業街。<br>
+            <strong>四眼井</strong>：清朝時期水井，400年歷史。
+          </div>
+          <span class="spot-tag tip">歷史文化</span>
+        </div>
+      </div>
+      <div class="spot-item" style="background: linear-gradient(135deg, #FFF8E1, #FFF3CD); border-color: #FFB300;">
+        <div class="spot-icon event">⏰</div>
+        <div class="spot-content">
+          <div class="spot-name">回程注意</div>
+          <div class="spot-desc">13:00 太吉3號 馬公港出發 → 布袋港<br>請提前 30 分鐘到達碼頭集合</div>
+          <span class="spot-tag tip">早點回到港口</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── MEAL OVERVIEW ── -->
+<section class="section fade-up">
+  <div class="section-title">
+    <i class="fas fa-utensils"></i>膳食一覽
+  </div>
+  <div style="background:var(--bg-card); border-radius:18px; overflow:hidden; box-shadow:var(--shadow);">
+    <table style="width:100%; border-collapse:collapse;">
+      <thead>
+        <tr style="background: linear-gradient(135deg, var(--ocean), var(--wave)); color:#fff;">
+          <th style="padding:10px 12px; font-size:13px; text-align:left;">日期</th>
+          <th style="padding:10px 8px; font-size:13px; text-align:center;">早餐</th>
+          <th style="padding:10px 8px; font-size:13px; text-align:center;">午餐</th>
+          <th style="padding:10px 8px; font-size:13px; text-align:center;">晚餐</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="padding:10px 12px; font-size:12px; font-weight:700;">5/1（五）</td>
+          <td style="text-align:center; font-size:18px; padding:8px;">❌</td>
+          <td style="text-align:center; font-size:18px; padding:8px;">✅</td>
+          <td style="text-align:center; font-size:18px; padding:8px;">✅</td>
+        </tr>
+        <tr style="background:var(--bg-light);">
+          <td style="padding:10px 12px; font-size:12px; font-weight:700;">5/2（六）</td>
+          <td style="text-align:center; font-size:18px; padding:8px;">✅</td>
+          <td style="text-align:center; font-size:18px; padding:8px;">✅</td>
+          <td style="text-align:center; font-size:18px; padding:8px;">✅</td>
+        </tr>
+        <tr>
+          <td style="padding:10px 12px; font-size:12px; font-weight:700;">5/3（日）</td>
+          <td style="text-align:center; font-size:18px; padding:8px;">✅</td>
+          <td style="text-align:center; font-size:18px; padding:8px;">✅</td>
+          <td style="text-align:center; font-size:18px; padding:8px;">✅</td>
+        </tr>
+      </tbody>
+    </table>
+    <div style="padding:10px 14px; font-size:11px; color:var(--text-light); background:var(--bg-light);">
+      ✅ 含於費用內 ｜ ❌ 不含（自理）｜餐標 300 元×6 合菜
+    </div>
+  </div>
+</section>
+
+<!-- ── PRICE TABLE ── -->
+<section class="section fade-up">
+  <div class="section-title">
+    <i class="fas fa-tag"></i>費用說明
+  </div>
+  <div class="price-table">
+    <table>
+      <thead>
+        <tr>
+          <th>房型</th>
+          <th>12歲以上</th>
+          <th>3-12歲 佔床</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="font-weight:700;">四人房</td>
+          <td class="highlight-cell">9,800元</td>
+          <td>9,300元</td>
+        </tr>
+        <tr>
+          <td style="font-weight:700;">三人房</td>
+          <td class="highlight-cell">10,000元</td>
+          <td>9,500元</td>
+        </tr>
+        <tr>
+          <td style="font-weight:700;">二人房</td>
+          <td class="highlight-cell">10,400元</td>
+          <td>9,900元</td>
+        </tr>
+        <tr>
+          <td style="font-weight:700;">3-12歲 不佔床</td>
+          <td colspan="2" class="highlight-cell">7,400元</td>
+        </tr>
+        <tr>
+          <td style="font-weight:700;">3歲以下嬰兒</td>
+          <td colspan="2" class="highlight-cell">600元</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="note-card" style="margin-top:10px;">
+    <div class="note-title"><i class="fas fa-info-circle"></i>費用備註</div>
+    <ul class="note-list">
+      <li>二人房改兩張床（T2）每人加 300 元</li>
+      <li>隘門沙灘水上活動費用自理（不含）</li>
+      <li>共 84 人，行程視人數確認後出發</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ── INCLUDES ── -->
+<section class="section fade-up">
+  <div class="section-title">
+    <i class="fas fa-check-circle"></i>費用包含
+  </div>
+  <div class="includes-list">
+    <div class="include-item"><i class="fas fa-bus"></i>員林－布袋來回接送</div>
+    <div class="include-item"><i class="fas fa-ship"></i>布袋港－澎湖來回船票</div>
+    <div class="include-item"><i class="fas fa-car-side"></i>馬公環島車資</div>
+    <div class="include-item"><i class="fas fa-car-side"></i>奎壁山+隘門車資</div>
+    <div class="include-item"><i class="fas fa-anchor"></i>南海跳島遊覽船費</div>
+    <div class="include-item"><i class="fas fa-bus-alt"></i>跳島上岸遊覽車資</div>
+    <div class="include-item"><i class="fas fa-utensils"></i>2早 3午 3晚餐</div>
+    <div class="include-item"><i class="fas fa-bed"></i>豐家飯店 2晚住宿</div>
+    <div class="include-item"><i class="fas fa-user-tie"></i>澎湖司領小費</div>
+    <div class="include-item"><i class="fas fa-shield-alt"></i>旅遊保險</div>
+  </div>
+  <div style="margin-top:10px; background:var(--bg-card); border-radius:12px; padding:12px 14px; box-shadow:var(--shadow); font-size:11px; color:var(--text-mid);">
+    🛡️ 保險：責任險 250萬 ｜ 醫療險 20萬 ｜ 履約險 4,200萬
+  </div>
+</section>
+
+<!-- ── NOTES ── -->
+<section class="section fade-up">
+  <div class="section-title">
+    <i class="fas fa-clipboard-list"></i>注意事項
+  </div>
+  <div class="note-card">
+    <div class="note-title"><i class="fas fa-exclamation-triangle"></i>出發前準備</div>
+    <ul class="note-list">
+      <li>攜帶身分證（搭船必備）</li>
+      <li>準備防曬乳、太陽眼鏡、帽子</li>
+      <li>建議穿着舒適涼快服裝與防滑鞋</li>
+      <li>暈船者請提前備妥暈船藥</li>
+      <li>每日外出攜帶少量現金備用</li>
+    </ul>
+  </div>
+  <div class="note-card">
+    <div class="note-title"><i class="fas fa-cloud-sun"></i>天候與行程調整</div>
+    <ul class="note-list">
+      <li>行程順序可能依天候、交通因素調整</li>
+      <li>南海跳島遇強風大浪時，部分島嶼可能無法靠泊</li>
+      <li>奎壁山分海需配合潮汐時間，由領隊安排</li>
+      <li>海上煙火如遇天雨仍照常舉辦（建議帶雨衣）</li>
+    </ul>
+  </div>
+  <div class="note-card">
+    <div class="note-title"><i class="fas fa-heart"></i>貼心建議</div>
+    <ul class="note-list">
+      <li>澎湖5月紫外線強烈，請做好防曬措施</li>
+      <li>跳島搭船時，行動不便者請告知領隊</li>
+      <li>購買海鮮乾貨時，注意行李重量限制</li>
+      <li>如有任何問題請隨時聯絡領隊楊琇如</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<div class="footer">
+  <strong>🌊 菊島澎湖 精彩三日遊</strong>
+  115年 5月1日－5月3日<br><br>
+  👩‍✈️ 領隊：楊琇如 ｜ 📞 0963-127-327<br><br>
+  <span style="font-size:10px; opacity:0.5;">祝您旅途愉快、平安順利 ✨</span>
+</div>
+
+<!-- ── STICKY CALL ── -->
+<div class="sticky-call">
+  <a href="tel:0963127327" title="撥打領隊">
+    <i class="fas fa-phone"></i>
+  </a>
+</div>
+<div class="scroll-top">
+  <button onclick="window.scrollTo({top:0,behavior:'smooth'})">
+    <i class="fas fa-chevron-up"></i>
+  </button>
+</div>
+
+<script>
+  function switchDay(n, btn) {
+    // panels
+    document.querySelectorAll('.day-panel').forEach(p => p.classList.remove('active'));
+    document.getElementById('day' + n).classList.add('active');
+    // tabs
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+  }
+
+  // Intersection Observer for fade-up
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-up').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(20px)';
+    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    observer.observe(el);
+  });
+
+  // Show/hide scroll top
+  const scrollTopBtn = document.querySelector('.scroll-top');
+  window.addEventListener('scroll', () => {
+    scrollTopBtn.style.display = window.scrollY > 300 ? 'block' : 'none';
+  });
+  scrollTopBtn.style.display = 'none';
+</script>
+
+</body>
+</html>
